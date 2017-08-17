@@ -512,6 +512,13 @@ function lunch()
         return 1
     fi
 
+    if (echo -n $product | grep -q -e "^fortune_") ; then
+        FORTUNE_BUILD=$(echo -n $product | sed -e 's/^fortune_//g')
+    else
+        FORTUNE_BUILD=
+    fi
+    export FORTUNE_BUILD
+
     _lunch_meat $product $release $variant
 }
 
